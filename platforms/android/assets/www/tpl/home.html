@@ -1,0 +1,21 @@
+<!--
+    This template gets placed in the Pet tab's <nav-view> directive.
+    It was wired up in the app config (app.js)
+    The 'items' data comes from its $scope within IndexController (controller.js)
+-->
+<ion-view title="主页">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-content has-header="true" has-tabs="true">
+        <ion-list>
+            <ion-item ng-repeat="todo in todos" type="item-text-wrap" ng-href="#/app/items/{{$index}}">
+                <h3>{{todo.title}}</h3>
+                <p>{{todo.message}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+

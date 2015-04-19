@@ -164,7 +164,7 @@ module.exports = function (grunt) {
             }
         },
 
-        
+
 
         // Compiles Sass to CSS and generates necessary files if requested
         compass: {
@@ -319,7 +319,7 @@ module.exports = function (grunt) {
         karma: {
             unit: {
                 configFile: 'karma.conf.js',
-                singleRun: true
+                singleRun: false
             }
         },
 

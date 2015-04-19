@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('myCordova', ['ionic', 'ngCookies', 'ngResource', 'ngSanitize'])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .run(function($ionicPlatform) {
+      $ionicPlatform.ready(function() {
+        if(window.StatusBar) {
+          StatusBar.styleDefault();
+        }
+      });
+    }).config(function ($stateProvider, $urlRouterProvider) {
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
         // Set up the various states which the app can be in.
@@ -9,52 +15,50 @@ angular.module('myCordova', ['ionic', 'ngCookies', 'ngResource', 'ngSanitize'])
         $stateProvider
 
             // setup an abstract state for the tabs directive
-            .state('tab', {
-                url: "/tab",
+            .state('app', {
+                url: "/app",
                 abstract: true,
-                templateUrl: "tpl/tabs.html"
+                views:{
+                    'abc': {
+                        templateUrl: "tpl/menu.html",
+                        controller: 'MenuController'
+                    }
+                }
             })
 
             // the pet tab has its own child nav-view and history
-            .state('tab.index', {
-                url: '/items',
+            .state('app.home', {
+                url: '/home',
                 views: {
-                    'index-tab': {
-                        templateUrl: 'tpl/index.html',
+                    'menuContent': {
+                        templateUrl: 'tpl/home.html',
                         controller: 'IndexController'
                     }
                 }
             })
 
-            .state('tab.detail', {
-                url: '/item/:itemId',
+            .state('app.item', {
+                url: '/items/:itemId',
                 views: {
-                    'index-tab': {
+                    'menuContent': {
                         templateUrl: 'tpl/detail.html',
                         controller: 'IndexController'
                     }
                 }
             })
 
-            .state('tab.form', {
-                url: '/form',
+            
+            .state('app.sales', {
+                url: '/sales',
                 views: {
-                    'form-tab': {
-                        templateUrl: 'tpl/form.html'
-                    }
-                }
-            })
-
-            .state('tab.about', {
-                url: '/about',
-                views: {
-                    'about-tab': {
-                        templateUrl: 'tpl/about.html'
+                    'menuContent': {
+                        templateUrl: 'tpl/sales.html',
+                        controller: 'SalesController'
                     }
                 }
             });
 
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/items');
+        
+        $urlRouterProvider.otherwise('/app/home');
 
     });

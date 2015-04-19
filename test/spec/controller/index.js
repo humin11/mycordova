@@ -17,7 +17,9 @@ describe('Controller: IndexController', function () {
         });
     }));
 
-    it('should attach a list of awesomeThings to the scope', function () {
-        expect(scope.awesomeThings.length).toBe(3);
+    it('Todo初始化数量为8', function () {
+        scope.todos.push({title:'abc'});
+        expect(scope.todos.length).toBe(8);
     });
+
 });
